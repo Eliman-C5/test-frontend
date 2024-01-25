@@ -1,0 +1,65 @@
+:root {
+  font-family: sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #1a1a1a;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #0b5ed7;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.home, .login, .signup {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  padding: 3rem 1rem;
+} 
+
+.login-form, .signup-form {
+  margin: 0 auto;
+  max-width: 450px;
+  width: 100%;
+  border: 1px solid #cecece;
+  padding: 2.5rem 1.5rem;
+  border-radius: 12px;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.task-form {
+  display: flex;
+  gap: .5rem;
+}
+
+.task-list {
+  margin-top: 1rem;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  min-width: 250px;
+}
+
+.icon {
+  cursor: pointer;
+}
