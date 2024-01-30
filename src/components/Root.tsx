@@ -1,21 +1,17 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from 'react';
-import { TaskContext } from '../context/TaskProvider';
+import { useEffect, useState } from 'react';
 
 function Root() {
 
   const [user, setUser] = useState<string | null>(null)
-  const {updateUI, setUpdateUI} = useContext(TaskContext)
   
   const navigate = useNavigate()
 
   useEffect(() => {
     
     setUser(localStorage.getItem('user'))
-    
-    setUpdateUI(!updateUI)
   
   }, [])
   
