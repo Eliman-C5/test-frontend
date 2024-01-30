@@ -10,16 +10,13 @@ import './index.css'
 import { TaskProvider } from './context/TaskProvider.tsx';
 import Login from './routes/Login.tsx';
 import Signup from './routes/Signup.tsx';
-import Verification from './routes/Verification.tsx';
 import ErrorPage from './routes/ErrorPage.tsx';
+import Confirmation from './routes/Confirmation.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: 
-    <TaskProvider>
-      <App />
-    </TaskProvider>,
+    element: <App />,
     errorElement: <ErrorPage />,
   },
   {
@@ -33,14 +30,16 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/verification",
-    element: <Verification />,
+    path: "/confirmation",
+    element: <Confirmation />,
     errorElement: <ErrorPage />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <TaskProvider>
+      <RouterProvider router={router} />
+    </TaskProvider>
   </React.StrictMode>,
 )

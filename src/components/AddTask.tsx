@@ -29,8 +29,10 @@ export const AddTask = () => {
     
     //Si se presionó previamente en editar, se tendrá que editar
     if (currentID) return updateTask()
+    
+    const user = localStorage.getItem('user')
   
-    axios.post(`${baseURL}/create`, {task: inputValue})
+    axios.post(`${baseURL}/create`, {task: inputValue, email: user})
     .then((res) => {
       console.log(res.data)
       //Al enviarse la task ponemos la cajita vacia otra vez
