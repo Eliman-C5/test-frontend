@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ChangeEvent, FormEvent, useContext } from 'react'
+import { ChangeEvent, FormEvent, useContext, useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { baseURL } from '../utils/constant';
@@ -9,10 +9,16 @@ import { RxUpdate } from 'react-icons/rx';
 
 export const AddTask = () => {
   
-  const {updateUI, setUpdateUI, inputValue, setInputValue, currentID, setCurrentID} = useContext(TaskContext)
+  const {updateUI, setUpdateUI, inputValue, setInputValue, currentID, setCurrentID, status} = useContext(TaskContext)
+  const [token, setToken] = useState<null | string>(null)
   
   const updateTask= () => {
-    axios.put(`${baseURL}/update/${currentID}`, {task: inputValue})
+    axios.put(`${baseURL}/update/${currentID}`, {task: inputValue, done: status}, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
     .then((res) => {
       console.log(res)
       setInputValue("")
@@ -24,6 +30,8 @@ export const AddTask = () => {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     
+    setToken(localStorage.getItem('session'))
+    
     //Si el valor es menor o igual a 1 no se agrega
     if (inputValue.length <= 1 ) return
     
@@ -32,7 +40,12 @@ export const AddTask = () => {
     
     const user = localStorage.getItem('user')
   
-    axios.post(`${baseURL}/create`, {task: inputValue, email: user})
+    axios.post(`${baseURL}/create`, {task: inputValue, email: user}, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
     .then((res) => {
       console.log(res.data)
       //Al enviarse la task ponemos la cajita vacia otra vez
@@ -40,6 +53,7 @@ export const AddTask = () => {
       //Actualizamos UI
       setUpdateUI(!updateUI)
     })
+    .catch(err => console.log(err))
     
   }
   

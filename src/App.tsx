@@ -28,12 +28,22 @@ function App() {
     if (!localStorage.getItem('session')) return navigate('/login')
     
     const email = localStorage.getItem('user')
+    const token = localStorage.getItem('session')
     
     axios.get(`${baseURL}/users`)
     .then((res) => res.data)
     .then((res: Responds[]) => res.filter(item => item.email === email))
-    .then(res => axios.get(`${baseURL}/get/${res[0]._id}`))
-    .then(res => setTasks(res.data))
+    .then(res => axios.get(`${baseURL}/get/${res[0]._id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    }))
+    .then(res => {
+      console.log(res)
+      setTasks(res.data)
+    })
+    .catch(err => console.log(err))
   
   }, [updateUI])
 
@@ -53,7 +63,8 @@ function App() {
           <TaskItem 
             key={item._id} 
             id={item._id} 
-            task={item.task} 
+            task={item.task}
+            done={item.done}
           />)
         }
         </ListGroup>

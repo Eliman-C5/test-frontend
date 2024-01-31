@@ -56,7 +56,7 @@ h1 {
 
 .list-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   min-width: 250px;
 }
 

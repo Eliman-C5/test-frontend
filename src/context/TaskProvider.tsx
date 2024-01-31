@@ -8,6 +8,7 @@ export const TaskProvider = ({children}: PropChildren) => {
   const [updateUI, setUpdateUI] = useState(false)
   const [inputValue, setInputValue] = useState("");
   const [currentID, setCurrentID] = useState<string | null>(null);
+  const [status, setStatus] = useState<boolean | null>(null);
   
   return (
     <TaskContext.Provider
@@ -18,6 +19,8 @@ export const TaskProvider = ({children}: PropChildren) => {
         setInputValue,
         currentID,
         setCurrentID,
+        status,
+        setStatus
       }}
     >
       {children}
