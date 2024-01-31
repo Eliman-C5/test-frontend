@@ -65,12 +65,12 @@ const Login = () => {
             value={password} onChange={(e) => setPassword(e.target.value)} 
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" data-cy="submit">
           Submit
         </Button>
       </Form>
       
-      {error && <p className='text-danger p-2' style={{maxWidth: '450px'}}>{error}</p>}
+      {error && <p className='text-danger p-2' style={{maxWidth: '450px'}} data-cy="error-message">{error}</p>}
     
     </main>
     
