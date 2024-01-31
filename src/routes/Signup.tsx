@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
-  const {email, setEmail, password, setPassword} = useForm()
+  const {email, setEmail, password, setPassword, error, setError} = useForm()
   
   const navigate = useNavigate()
   
@@ -32,7 +32,7 @@ const Signup = () => {
       navigate('/confirmation')
       
     })
-    .catch(err => console.log(err))
+    .catch(err => setError(err.response.data))
     
     console.log(email, password)
   
@@ -46,7 +46,9 @@ const Signup = () => {
     
     <main className="signup">
     
-      <Form className='signup-form' onSubmit={onSubmit}>
+      <h2>Sign up</h2>
+    
+      <Form className='signup-form mt-4' onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control 
@@ -68,6 +70,8 @@ const Signup = () => {
           Submit
         </Button>
       </Form>
+      
+      {error && <p className='text-danger p-2' style={{maxWidth: '450px'}}>{error}</p>}
     
     </main>
     

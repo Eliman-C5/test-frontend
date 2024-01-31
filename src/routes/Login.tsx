@@ -9,7 +9,7 @@ import { authURL } from '../utils/constant';
 
 const Login = () => {
 
-  const {email, setEmail, password, setPassword} = useForm()
+  const {email, setEmail, password, setPassword, error, setError} = useForm()
 
   const navigate = useNavigate()
   
@@ -28,9 +28,7 @@ const Login = () => {
       navigate('/')
       
     })
-    .catch(err => console.log(err))
-    
-    console.log(email, password)
+    .catch(err => setError(err.response.data))
   
   }
   
@@ -47,7 +45,9 @@ const Login = () => {
     
     <main className="login">
     
-      <Form className='login-form' onSubmit={onSubmit}>
+      <h2>Log in</h2>
+    
+      <Form className='login-form mt-4' onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control 
@@ -69,6 +69,8 @@ const Login = () => {
           Submit
         </Button>
       </Form>
+      
+      {error && <p className='text-danger p-2' style={{maxWidth: '450px'}}>{error}</p>}
     
     </main>
     
