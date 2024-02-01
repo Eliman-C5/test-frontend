@@ -28,3 +28,10 @@ export type GlobalTypes = {
   status: boolean | null,
   setStatus: React.Dispatch<React.SetStateAction<null | boolean>>,
 }
+
+export type Responds = {
+  email: string,
+  tasks: [] | null,
+  _id: string,
+  __v: number
+}

@@ -5,7 +5,7 @@ import { ListGroup } from "react-bootstrap"
 import axios from "axios"
 import { baseURL } from "./utils/constant"
 import { TaskContext } from "./context/TaskProvider"
-import { Task } from "./types/types"
+import { Responds, Task } from "./types/types"
 import Root from "./components/Root"
 import { useNavigate } from "react-router-dom"
 
@@ -15,13 +15,6 @@ function App() {
   const {updateUI} = useContext(TaskContext)
   
   const navigate = useNavigate()
-  
-  type Responds = {
-    email: string,
-    tasks: [] | null,
-    _id: string,
-    __v: number
-  }
   
   useEffect(() => {
   
