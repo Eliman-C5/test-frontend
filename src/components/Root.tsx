@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 function Root() {
 
@@ -32,18 +33,22 @@ function Root() {
           user ?
           <>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse className="justify-content-end" style={{gap: '.4rem'}}>
-              <span>{user}</span>
-              <button onClick={logout}>
-                Logout
-              </button>
+            <Navbar.Collapse className="justify-content-end">
+              <div className="" style={{display: 'flex', marginLeft: 'auto', gap: '.8rem', justifyContent: 'end', alignItems: 'center', marginTop: '10px'}}>
+                <span>{user}</span>
+                <Button onClick={logout} variant="primary" >
+                  Logout
+                </Button>
+              </div>
             </Navbar.Collapse>
           </> :
           <>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse className="justify-content-end" style={{gap: '.4rem'}}>
-              <Link to={`/login`}>Login</Link>
-              <Link to={`/signup`}>Signup</Link>
+            <Navbar.Collapse className="justify-content-end">
+              <div className="" style={{display: 'flex', marginLeft: 'auto', gap: '.8rem', justifyContent: 'end', alignItems: 'center', marginTop: '10px'}}>
+                <Link to={`/login`}>Login</Link>
+                <Link to={`/signup`}>Signup</Link>
+              </div>
             </Navbar.Collapse>
           </>
         }

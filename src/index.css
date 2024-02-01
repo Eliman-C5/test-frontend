@@ -27,7 +27,7 @@ body {
 .home, .login, .signup {
   display: flex;
   flex-direction: column;
-  place-items: center;
+  align-items: center;
   padding: 3rem 1rem;
 } 
 
@@ -48,16 +48,21 @@ h1 {
 .task-form {
   display: flex;
   gap: .5rem;
+  min-width: 250px;
+  width: 50%;
+  max-width: 600px;
 }
 
 .task-list {
   margin-top: 1rem;
+  width: 50%;
+  min-width: 250px;
+  max-width: 600px;
 }
 
 .list-item {
   display: flex;
-  justify-content: space-around;
-  min-width: 250px;
+  justify-content: space-between;
 }
 
 .icon {

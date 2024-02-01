@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ListGroupItem } from "react-bootstrap"
+import { FormCheck, ListGroupItem } from "react-bootstrap"
 import { BiEditAlt } from "react-icons/bi"
 import { BsTrash } from "react-icons/bs"
 import { baseURL } from "../utils/constant"
@@ -11,7 +11,7 @@ export const TaskItem = ({id, task, done}: TaskItemProps) => {
 
   const {updateUI, setUpdateUI, setInputValue, setCurrentID, setStatus} = useContext(TaskContext)
   const [token, setToken] = useState<null | string>(null)
-  const [isTaskDone, setIsTaskDone] = useState<null | boolean>(done)
+  const [isTaskDone, setIsTaskDone] = useState<boolean>(done)
 
   const deleteTask = () => {
   
@@ -40,8 +40,11 @@ export const TaskItem = ({id, task, done}: TaskItemProps) => {
 
   return (
     <ListGroupItem className="list-item">
-    <span onClick={() => setIsTaskDone(!isTaskDone)}>{`${isTaskDone}`}</span>
-    <span className="">{task}</span>
+      <FormCheck 
+        onChange={() => setIsTaskDone(!isTaskDone)} 
+        checked={isTaskDone} 
+      />
+    <span className={`${isTaskDone ? 'text-decoration-line-through' : ''}`}>{task}</span>
     <div className="">
       <BiEditAlt className="icon" onClick={selectTask} />
       <BsTrash className="icon" onClick={deleteTask} />
